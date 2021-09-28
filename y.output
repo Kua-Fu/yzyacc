@@ -1,0 +1,58 @@
+
+state 0
+	$accept: .in $end 
+	in: .    (1)
+
+	.  reduce 1 (src line 27)
+
+	in  goto 1
+
+state 1
+	$accept:  in.$end 
+	in:  in.input '\n' 
+
+	$end  accept
+	CHARACTER  shift 3
+	.  error
+
+	input  goto 2
+
+state 2
+	in:  in input.'\n' 
+	input:  input.CHARACTER 
+
+	CHARACTER  shift 5
+	'\n'  shift 4
+	.  error
+
+
+state 3
+	input:  CHARACTER.    (3)
+
+	.  reduce 3 (src line 32)
+
+
+state 4
+	in:  in input '\n'.    (2)
+
+	.  reduce 2 (src line 28)
+
+
+state 5
+	input:  input CHARACTER.    (4)
+
+	.  reduce 4 (src line 33)
+
+
+5 terminals, 3 nonterminals
+5 grammar rules, 6/16000 states
+0 shift/reduce, 0 reduce/reduce conflicts reported
+52 working sets used
+memory: parser 1/240000
+0 extra closures
+3 shift entries, 1 exceptions
+2 goto entries
+0 entries saved by goto default
+Optimizer space used: output 5/240000
+5 table entries, 0 zero
+maximum spread: 5, maximum offset: 4

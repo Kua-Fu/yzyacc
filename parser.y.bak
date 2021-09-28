@@ -1,0 +1,36 @@
+// 嵌入的golang代码 {% ... %}
+
+// %{
+//     package parser
+//     import (
+//         "fmt"
+//     )
+// %}
+
+
+// 文法定义
+%union{
+    var string
+    num int
+}
+
+%token <num> NUM
+%token <var> ADD SUB '+' '-'
+
+%type <var> expr
+
+%start expr
+
+%%
+
+// 文法规则
+
+expr: NUM{
+    $$ = $1
+}
+| expr '+' NUM {
+    $$ = $1 + $3
+}
+| expr '-' NUM {
+    $$ = $1 - $3
+}
